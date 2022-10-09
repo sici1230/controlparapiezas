@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Iniciar Sesion</title>
+    </h:head>
+    <h:body>
+        <h:form id="iniciarsesion">
+            <p:growl id="mensaje" severity="info, fatal"  showSummary="true" showDetail="true">
+                <p:autoUpdate/>
+            </p:growl>
+
+            <p:panel header="INICIAR SESIÓN">
+                <p:panelGrid columns="1" layout="grid" id="pgSesion">
+                    <p:outputLabel id="lblUser" for="user" value="Usuario" />
+                    <p:inputText id="user" value="#{vistaIniciarSesion.sesion.usuario}" placeholder="Usuario" >
+                        <!--<p:ajax event="blur" update="messages user lblUser"/>-->
+                    </p:inputText>
+
+                    <p:outputLabel id="lblPass" for="pass" value="Contraseña" />
+                    <p:password id="pass" toggleMask="true" value="#{vistaIniciarSesion.sesion.contrasenia}" autocomplete="false" placeholder="Contraseña" >
+                        <!--<p:ajax event="blur" update="messages lblPass pass"/>-->
+                    </p:password>
+
+                    <p:commandButton value="INICIAR SESIÓN" action="#{vistaIniciarSesion.iniciarSesion()}" update="iniciarsesion"/>
+                </p:panelGrid>
+            </p:panel>
+        </h:form>
+    </h:body>
+</html>
+
