@@ -10,6 +10,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.web.controlparapiezas.VariablesDeEntorno;
 import com.web.controlparapiezas.entidades.Usuarios;
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -24,10 +25,12 @@ import java.util.logging.Logger;
  */
 public class UsuarioJWT {
     
-    //Para crear el token con 
+    private static final VariablesDeEntorno variables = new VariablesDeEntorno();
+    
+    //Para crear el token
     private static final Logger LOGGER = Logger.getLogger(UsuarioJWT.class.getName());
-    private static final String ISSUER = "jakarta";
-    private static final String ROLES = "roles";
+    private static final String ISSUER = variables.getISSUER();
+    private static final String ROLES = variables.getROLES();
 
     private String user;
 

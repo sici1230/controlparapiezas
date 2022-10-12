@@ -4,6 +4,7 @@
  */
 package com.web.controlparapiezas.servicios;
 
+import com.web.controlparapiezas.VariablesDeEntorno;
 import com.web.controlparapiezas.beans.UsuariosxrolesFacadeLocal;
 import com.web.controlparapiezas.entidades.Usuarios;
 import com.web.controlparapiezas.entidades.Usuariosxroles;
@@ -25,7 +26,9 @@ import javax.inject.Named;
 @RequestScoped
 public class ServicioVerificacioAutenticacion {
     
-    static final int EXPIRE_IN = 3600;
+    private static final VariablesDeEntorno variables = new VariablesDeEntorno();
+    
+    static final int EXPIRE_IN = variables.getEXPIRE_IN();
 
     static final Duration EXPIRES = Duration.ofSeconds(EXPIRE_IN);
 

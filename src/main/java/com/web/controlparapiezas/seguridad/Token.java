@@ -4,6 +4,7 @@
  */
 package com.web.controlparapiezas.seguridad;
 
+import com.web.controlparapiezas.VariablesDeEntorno;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Supplier;
 
@@ -15,9 +16,11 @@ public class Token implements Supplier<String>{
     
     //Es para poder generar el token
 
-    private static final int LEFT_LIMIT = 48;
-    private static final int RIGHT_LIMIT = 122;
-    static final int SIZE = 32;
+    private static final VariablesDeEntorno variables = new VariablesDeEntorno();
+    
+    private static final int LEFT_LIMIT = variables.getLEFT_LIMIT();
+    private static final int RIGHT_LIMIT = variables.getRIGHT_LIMIT();
+    static final int SIZE = variables.getSIZE();
     
     private final String token;
     
