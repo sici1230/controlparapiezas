@@ -18,7 +18,7 @@ import lombok.Setter;
  *
  * @author HP
  */
-@Named("vistaIniciarSesion")
+@Named(value = "vistaIniciarSesion")
 @ViewScoped
 @Getter
 @Setter

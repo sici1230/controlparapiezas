@@ -19,7 +19,7 @@ import lombok.Setter;
  *
  * @author HP
  */
-@Named("vistaUsuarios")
+@Named(value = "vistaUsuarios")
 @ViewScoped
 public class VistaUsuarios implements Serializable {
 
