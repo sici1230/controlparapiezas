@@ -32,4 +32,40 @@ public class ServicioUsuarios {
         }
         return usuarios;
     }
+    
+    public boolean crearUsuario(Usuarios crearUsuario){
+        try {
+            usuariosFacade.create(crearUsuario);
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error en crear el usuario!!!" + e.getMessage());
+            return false;
+        }
+    }
+    
+    public boolean verificarUsuario(Object nombreUsuario){
+        try {
+            System.out.println("datos " + nombreUsuario);
+            if(usuariosFacade.buscarPorUsuario(nombreUsuario).isPresent()){
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println("Error en buscar usuario");
+            return false;
+        }
+    }
+    
+    public List<String> listaDeUsuarios(){
+        try {
+            List<String> usuarios = new ArrayList<>();
+            usuariosFacade.findAll().forEach(usuario -> usuarios.add(usuario.getUsuario()));
+            System.out.println("Lista de usuarios");
+            return usuarios;
+        } catch (Exception e) {
+            System.out.println("Error al buscar los usuarios");
+            return new ArrayList<>();
+        }
+    }
 }
