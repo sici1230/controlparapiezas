@@ -6,8 +6,8 @@
     <class>com.web.controlparapiezas.entidades.Maquina</class>
     <class>com.web.controlparapiezas.entidades.PiezaMaquina</class>
     <class>com.web.controlparapiezas.entidades.Piezas</class>
-    <class>com.web.controlparapiezas.entidades.Usuariosxroles</class>
     <class>com.web.controlparapiezas.entidades.Usuarios</class>
+    <class>com.web.controlparapiezas.entidades.Usuariosxroles</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
   </persistence-unit>
 </persistence>
