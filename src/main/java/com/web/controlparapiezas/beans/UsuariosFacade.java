@@ -35,12 +35,12 @@ public class UsuariosFacade extends AbstractFacade<Usuarios> implements Usuarios
         Optional<Usuarios> usuario;
         Usuarios usuarioConsulta;
         try {
-            TypedQuery<Usuarios> consultaUsuario = em.createNamedQuery("IniciarSesion.findByUsuario", Usuarios.class);
+            TypedQuery<Usuarios> consultaUsuario = em.createNamedQuery("Usuarios.findByUsuario", Usuarios.class);
             consultaUsuario.setParameter("usuario", nombreUsuario);
             usuarioConsulta = consultaUsuario.getSingleResult();
             usuario = Optional.of(usuarioConsulta);
         } catch (Exception e) {
-            System.out.println("Error en consultar los usuarios");
+            System.out.println("Error en consultar los usuarios" + e.getMessage());
             return Optional.empty();
 //            throw e;
         }
