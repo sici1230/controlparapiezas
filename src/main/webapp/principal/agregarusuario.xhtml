@@ -9,7 +9,103 @@
     </h:head>
     <h:body>
         <h:form id="frmDialogo">
-            Agregar usuario
+            <p:outputPanel >
+                <p:outputLabel value="Agregar Nuevo Usuario"/>
+            </p:outputPanel>
+
+            <p:panelGrid columns="2" columnClasses="ui-g-12 ui-md-12 ui-lg-4 ui-xl-4, ui-g-12 ui-md-12 ui-lg-8 ui-xl-8" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+                <p:outputLabel id="lblNombrePersona" for="txtNombrePersona" value="Nombres:  "/>
+                <p:inputText id="txtNombrePersona" required="true" value="#{vistaAgregarUsuario.nuevoUsuario.nombre}"
+                             requiredMessage="Ingrese el nombre" title="Ingrese el nombre" placeholder="Nombre" >
+                    <p:keyFilter regEx="/[a-z \á\é\í\ó\ú\ñ\ü]/i"/>
+                    <p:ajax event="blur" update="txtNombrePersona lblNombrePersona msgNombrePersona" />
+                </p:inputText>
+            </p:panelGrid>
+            <p:panelGrid columns="1" columnClasses="ui-g-12 ui-md-12 ui-lg-12 ul-xl-12" layout="grid" styleClass="ui-panelgrid-blank ui-fluid" >
+                <p:message id="msgNombrePersona" for="txtNombrePersona" style="width: 100%"/>
+            </p:panelGrid>
+
+            <p:panelGrid columns="2" columnClasses="ui-g-12 ui-md-12 ui-lg-4 ui-xl-4, ui-g-12 ui-md-12 ui-lg-8 ui-xl-8" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+                <p:outputLabel id="lblApellidosPersona" for="txtApellidosPersona" value="Apellidos:  "/>
+                <p:inputText id="txtApellidosPersona" required="true" value="#{vistaAgregarUsuario.nuevoUsuario.apellidos}"
+                             requiredMessage="Ingrese los apellidos" title="Ingrese los apellidos" placeholder="Apellidos" >
+                    <p:keyFilter regEx="/[a-z \á\é\í\ó\ú\ñ\ü]/i"/>
+                    <p:ajax event="blur" update="txtApellidosPersona lblApellidosPersona msgApellidosPersona" />
+                </p:inputText>
+            </p:panelGrid>
+            <p:panelGrid columns="1" columnClasses="ui-g-12 ui-md-12 ui-lg-12 ul-xl-12" layout="grid" styleClass="ui-panelgrid-blank ui-fluid" >
+                <p:message id="msgApellidosPersona" for="txtApellidosPersona" style="width: 100%"/>
+            </p:panelGrid>
+
+            <p:panelGrid columns="2" columnClasses="ui-g-12 ui-md-12 ui-lg-4 ui-xl-4, ui-g-12 ui-md-12 ui-lg-8 ui-xl-8" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+                <p:outputLabel id="lblUsuario" for="txtUsuario" value="Usuario: " />
+                <p:inputText id="txtUsuario" value="#{vistaAgregarUsuario.nuevoUsuario.usuario}" required="true" requiredMessage="Ingrese Usuario" 
+                             title="Usuario" placeholder="Usuario" validator="#{vistaAgregarUsuario.validarUsuario}">
+                    <p:keyFilter regEx="/[a-z0-9_\.\-@\á\é\í\ó\ú\ñ\ü]/i"/>
+                    <p:ajax event="blur" update="msgUsuario txtUsuario lblUsuario"/>
+                </p:inputText>
+            </p:panelGrid>
+            <p:panelGrid columns="1" columnClasses="ui-g-12 ui-md-12 ui-lg-12 ul-xl-12" layout="grid" styleClass="ui-panelgrid-blank ui-fluid" >
+                <p:message id="msgUsuario" for="txtUsuario" style="width: 100%"/>
+            </p:panelGrid>
+
+            <p:panelGrid columns="2" columnClasses="ui-g-12 ui-md-12 ui-lg-4 ui-xl-4, ui-g-12 ui-md-12 ui-lg-8 ui-xl-8" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+                <p:outputLabel id="lblClave1" for="clave1" value="Contraseña: "/>
+                <p:password id="clave1" value="#{vistaAgregarUsuario.nuevoUsuario.contrasenia}"
+                            match="clave2" validatorMessage="Las claves no coinciden"
+                            autocomplete="false" weakLabel="Débil" goodLabel="Aceptable" strongLabel="Fuerte"
+                            feedback="true" promptLabel="Ingrese una clave"
+                            required="true" requiredMessage="Ingrese clave"
+                            title="Ingrese contraseña" placeholder="Contraseña" >
+                </p:password>
+            </p:panelGrid>
+            <p:panelGrid columns="1" columnClasses="ui-g-12 ui-md-12 ui-lg-12 ul-xl-12" layout="grid" styleClass="ui-panelgrid-blank ui-fluid" >
+                <p:message id="msgClave1" for="clave1" style="width: 100%"/>
+            </p:panelGrid>
+
+            <p:panelGrid columns="2" columnClasses="ui-g-12 ui-md-12 ui-lg-4 ui-xl-4, ui-g-12 ui-md-12 ui-lg-8 ui-xl-8" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+                <p:outputLabel id="lblClave2" for="clave2" value="Repetir Contraseña: "/>
+                <p:password id="clave2" autocomplete="false" required="true" requiredMessage="Repita la contraseña"
+                            title="Repita la contraseña" placeholder="Repita la contraseña" >
+                    <p:ajax event="blur" update="lblClave1 msgClave1 lblClave2 msgClave2"/>
+                </p:password>
+            </p:panelGrid>
+            <p:panelGrid columns="1" columnClasses="ui-g-12 ui-md-12 ui-lg-12 ul-xl-12" layout="grid" styleClass="ui-panelgrid-blank ui-fluid" >
+                <p:message id="msgClave2" for="clave2" style="width: 100%"/>
+            </p:panelGrid>
+
+            <p:panelGrid columns="2" columnClasses="ui-g-12 ui-md-12 ui-lg-4 ui-xl-4, ui-g-12 ui-md-12 ui-lg-8 ui-xl-8" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+                <p:outputLabel id="lblCboRol" for="cboRol" value="Rol: "/>
+                <p:selectOneMenu id="cboRol" value="#{vistaAgregarUsuario.nuevoUsuario.rol}" required="true" requiredMessage="Seleccione un Rol" >
+                    <f:selectItem itemValue="" itemLabel="Seleccione un rol"/>
+                    <f:selectItem itemLabel="Administrador" itemValue="ADMIN"/>
+                    <f:selectItem itemLabel="Supervisor" itemValue="MANAGER"/>
+                    <f:selectItem itemLabel="Usuario" itemValue="USER"/>
+                    <p:ajax event="change" update="msgCboRol cboRol lblCboRol"/>
+                </p:selectOneMenu>
+            </p:panelGrid>
+            <p:panelGrid columns="1" columnClasses="ui-g-12 ui-md-12 ui-lg-12 ul-xl-12" layout="grid" styleClass="ui-panelgrid-blank ui-fluid" >
+                <p:message id="msgCboRol" for="cboRol" style="width: 100%"/>
+            </p:panelGrid>
+
+            <p:panelGrid columns="2" columnClasses="ui-g-12 ui-md-12 ui-lg-4 ui-xl-4, ui-g-12 ui-md-12 ui-lg-8 ui-xl-8" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+                <p:outputLabel id="lblRbEstadoUsuario" for="rbEstadoUsuario" value="Estado: "/>
+                <p:selectOneRadio id="rbEstadoUsuario" value="#{vistaAgregarUsuario.nuevoUsuario.estado}">
+                    <f:selectItem itemLabel="Activado" itemValue="true" />
+                    <f:selectItem itemLabel="Desactivado" itemValue="false"/>
+                    <p:ajax event="change" update="msgRbEstadoUsuario rbEstadoUsuario lblRbEstadoUsuario"/>
+                </p:selectOneRadio>
+            </p:panelGrid>
+            <p:panelGrid columns="1" columnClasses="ui-g-12 ui-md-12 ui-lg-12 ul-xl-12" layout="grid" styleClass="ui-panelgrid-blank ui-fluid" >
+                <p:message id="msgRbEstadoUsuario" for="rbEstadoUsuario" style="width: 100%"/>
+            </p:panelGrid>
+
+            <h:panelGrid columns="2" style="margin: 0 auto">
+                <p:commandButton value="Agregar" title="Agregar Usuario" action="#{vistaAgregarUsuario.crearUsuario()}" update="frmDialogo"/>
+                <p:fragment>
+                    <p:commandButton value="Regresar" action="#{vistaAgregarUsuario.regresar()}"/>
+                </p:fragment>
+            </h:panelGrid>
         </h:form>
     </h:body>
 </html>
