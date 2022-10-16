@@ -5,6 +5,7 @@
 package com.web.controlparapiezas.entidades;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -15,6 +16,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -34,7 +37,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usuarios.findByNombre", query = "SELECT i FROM Usuarios i WHERE i.nombre = :nombre"),
     @NamedQuery(name = "Usuarios.findByApellidos", query = "SELECT i FROM Usuarios i WHERE i.apellidos = :apellidos"),
     @NamedQuery(name = "Usuarios.findByRol", query = "SELECT i FROM Usuarios i WHERE i.rol = :rol"),
-    @NamedQuery(name = "Usuarios.findByEstado", query = "SELECT i FROM Usuarios i WHERE i.estado = :estado")})
+    @NamedQuery(name = "Usuarios.findByEstado", query = "SELECT i FROM Usuarios i WHERE i.estado = :estado"),
+    @NamedQuery(name = "Usuarios.findByFechaCreado", query = "SELECT i FROM Usuarios i WHERE i.fechaCreado = :fechaCreado"),
+    @NamedQuery(name = "Usuarios.findByFechaModificado", query = "SELECT i FROM Usuarios i WHERE i.fechaModificado = :fechaModificado")})
 public class Usuarios implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -66,9 +71,15 @@ public class Usuarios implements Serializable {
     private String rol;
     @Column(name = "estado")
     private Boolean estado;
+    @Column(name = "fecha_creacion")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaCreado;
+    @Column(name = "fecha_modificacion")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaModificado;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private List<Usuariosxroles> usuariosxrolesList;
-
+    
     public Usuarios() {
     }
 
@@ -130,6 +141,22 @@ public class Usuarios implements Serializable {
 
     public void setEstado(Boolean estado) {
         this.estado = estado;
+    }
+
+    public Date getFechaCreado() {
+        return fechaCreado;
+    }
+
+    public void setFechaCreado(Date fechaCreado) {
+        this.fechaCreado = fechaCreado;
+    }
+
+    public Date getFechaModificado() {
+        return fechaModificado;
+    }
+
+    public void setFechaModificado(Date fechaModificado) {
+        this.fechaModificado = fechaModificado;
     }
 
     @XmlTransient
