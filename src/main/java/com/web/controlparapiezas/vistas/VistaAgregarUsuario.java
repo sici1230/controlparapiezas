@@ -9,6 +9,7 @@ import com.web.controlparapiezas.seguridad.CifradoContrasenia;
 import com.web.controlparapiezas.servicios.ServicioUsuarios;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -53,6 +54,7 @@ public class VistaAgregarUsuario implements Serializable {
         try {
             String cifrada = cifrado.cifrar(nuevoUsuario.getContrasenia());
             nuevoUsuario.setContrasenia(cifrada);
+            nuevoUsuario.setFechaCreado(new Date());
             if (servicioUsuarios.crearUsuario(nuevoUsuario)) {
                 System.out.println("Usuario creado correctamente!!!");
                 return "usuarios.xhtml?faces-redirect=true";
