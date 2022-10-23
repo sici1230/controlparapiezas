@@ -11,11 +11,50 @@
         <h:form id="listausuarios">
             <p:commandButton value="Agregar Usuario" action="agregarusuario.xhml"  update="listausuarios" />
 
-            <p:dataTable id="tbUsuarios" var="usuarios" value="#{vistaUsuarios.listaUsuarios}" 
+            <p:dataTable id="tbUsuarios" var="usuario" value="#{vistaUsuarios.listaUsuarios}" 
                          emptyMessage="Ningún usuario registrado">
                 <f:facet name="header">
                     Gestionar Usuarios
                 </f:facet>
+
+                <p:columnGroup type="header">
+                    <p:row>
+                        <p:column rowspan="1" headerText="Nombre"/>
+                        <p:column rowspan="1" headerText="Apellidos"/>
+                        <p:column rowspan="1" headerText="Usuario"/>
+                        <p:column rowspan="1" headerText="Estado"/>
+                        <p:column rowspan="1" headerText="Fecha Creado"/>
+                        <p:column rowspan="1" headerText="Fecha Modificado"/>
+                        <p:column style="width:150px; text-align: center" headerText="Opciones" />
+                    </p:row>
+                </p:columnGroup>
+                <p:column >
+                    <h:outputText value="#{usuario.nombre}" />
+                </p:column>
+                <p:column >
+                    <h:outputText value="#{usuario.apellidos}" />
+                </p:column>
+                <p:column >
+                    <h:outputText value="#{usuario.usuario}" />
+                </p:column>
+                <p:column >
+                    <h:outputText value="#{usuario.estado ? 'Activado' : 'Desactivado'}" />
+                </p:column>
+                <p:column >
+                    <h:outputText value="#{usuario.fechaCreado}" >
+                        <f:convertDateTime locale="es" timeStyle="short" timeZone="GMT-6" type="both" dateStyle="full"/>
+                    </h:outputText>
+                </p:column>
+                <p:column >
+                    <h:outputText value="#{usuario.fechaModificado}" >
+                        <f:convertDateTime locale="es" timeStyle="short" timeZone="GMT-6" type="both" dateStyle="full"/>
+                    </h:outputText>
+                </p:column>
+                <p:column >
+                    <h:outputText value="Detalles - Modificar - Eliminar" />
+                </p:column>
+
+
             </p:dataTable>
         </h:form>
     </h:body>
